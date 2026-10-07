@@ -51,6 +51,7 @@ out/
 build/
 .vercel/
 .turbo/
+*.tsbuildinfo
 
 # Testing
 .pytest_cache/
@@ -73,6 +74,8 @@ coverage.xml
 logs/
 *.log
 frontend-dev.log
+backend/test_error.txt
+backend/test_output.txt
 
 # Storage
 uploads/
