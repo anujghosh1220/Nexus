@@ -76,68 +76,72 @@ export default function DashboardPage() {
   const unreadNotifications = notifications?.filter((n) => !n.is_read).length || 0;
 
   if (orgsLoading) {
-    return <Spinner size="lg" />;
+    return <Spinner size="lg" variant="nexus" />;
   }
 
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold">Dashboard</h1>
-        <p className="mt-1 text-muted-foreground">Welcome back, {user?.first_name}!</p>
+        <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+        <p className="mt-1 text-slate-400">Welcome back, {user?.first_name}!</p>
       </div>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card variant="nexus" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
           <CardHeader>
             <CardTitle>Organizations</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">{orgs?.length || 0}</p>
-            <p className="text-sm text-muted-foreground">Active workspaces</p>
+            <p className="text-4xl font-bold text-white">{orgs?.length || 0}</p>
+            <p className="text-sm text-slate-400">Active workspaces</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card variant="nexus" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 to-transparent" />
           <CardHeader>
             <CardTitle>Projects</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">{projects?.length || 0}</p>
-            <p className="text-sm text-muted-foreground">Total projects</p>
+            <p className="text-4xl font-bold text-white">{projects?.length || 0}</p>
+            <p className="text-sm text-slate-400">Total projects</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card variant="nexus" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
           <CardHeader>
             <CardTitle>Tasks</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">{tasks?.length || 0}</p>
-            <p className="text-sm text-muted-foreground">Total tasks</p>
+            <p className="text-4xl font-bold text-white">{tasks?.length || 0}</p>
+            <p className="text-sm text-slate-400">Total tasks</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card variant="nexus" className="relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
           <CardHeader>
             <CardTitle>Notifications</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">{unreadNotifications}</p>
-            <p className="text-sm text-muted-foreground">Unread notifications</p>
+            <p className="text-4xl font-bold text-white">{unreadNotifications}</p>
+            <p className="text-sm text-slate-400">Unread notifications</p>
           </CardContent>
         </Card>
       </div>
 
-      <Card className="mt-8">
+      <Card variant="nexus" className="mt-8">
         <CardHeader>
           <CardTitle>Your Organizations</CardTitle>
         </CardHeader>
         <CardContent>
           {showCreateOrg && (
-            <form onSubmit={handleCreateOrg} className="mb-6 space-y-4 rounded-md border p-4">
+            <form onSubmit={handleCreateOrg} className="mb-6 space-y-4 rounded-lg border border-white/10 bg-white/[0.02] p-4">
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Name</label>
+                  <label className="text-sm font-medium text-slate-300">Name</label>
                   <Input
                     placeholder="Acme Inc."
                     value={orgName}
@@ -146,7 +150,7 @@ export default function DashboardPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Slug</label>
+                  <label className="text-sm font-medium text-slate-300">Slug</label>
                   <Input
                     placeholder="acme-inc"
                     value={orgSlug}
@@ -156,7 +160,7 @@ export default function DashboardPage() {
                 </div>
               </div>
               <div className="flex gap-3">
-                <Button type="submit" disabled={createOrgMutation.isPending}>
+                <Button type="submit" disabled={createOrgMutation.isPending} variant="nexus">
                   {createOrgMutation.isPending ? "Creating..." : "Create"}
                 </Button>
                 <Button type="button" variant="outline" onClick={() => setShowCreateOrg(false)}>
@@ -168,21 +172,23 @@ export default function DashboardPage() {
 
           {orgs?.length === 0 ? (
             <div className="text-center">
-              <p className="text-muted-foreground mb-4">No organizations yet. Create one to get started.</p>
+              <p className="text-slate-400 mb-4">No organizations yet. Create one to get started.</p>
               {!showCreateOrg && (
-                <Button onClick={() => setShowCreateOrg(true)}>Create Organization</Button>
+                <Button onClick={() => setShowCreateOrg(true)} variant="nexus">
+                  Create Organization
+                </Button>
               )}
             </div>
           ) : (
             <>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                 {orgs?.map((org) => (
-                  <Card key={org.id}>
+                  <Card key={org.id} variant="nexus">
                     <CardHeader>
                       <CardTitle>{org.name}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm text-muted-foreground">/{org.slug}</p>
+                      <p className="text-sm text-slate-400">/{org.slug}</p>
                     </CardContent>
                   </Card>
                 ))}

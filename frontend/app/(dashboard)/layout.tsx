@@ -9,8 +9,10 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     <AuthRedirect>
       <div className="flex h-screen">
         <DashboardSidebar />
-        <main className="flex-1 overflow-y-auto bg-background">
-          {children}
+        <main className="flex-1 overflow-y-auto bg-nexus-background">
+          <div className="nexus-grid-bg min-h-full">
+            {children}
+          </div>
         </main>
       </div>
     </AuthRedirect>

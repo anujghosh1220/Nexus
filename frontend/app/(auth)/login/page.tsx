@@ -43,16 +43,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <Card className="w-full max-w-md">
+    <div className="flex min-h-screen items-center justify-center nexus-grid-bg px-4">
+      <Card className="w-full max-w-md glass-panel border-primary/20">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl">Sign in to NEXUS</CardTitle>
+          <CardTitle className="text-2xl text-white">Sign in to NEXUS</CardTitle>
           <CardDescription>Enter your credentials to access your workspace</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <label htmlFor="email" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-300">
                 Email
               </label>
               <Input
@@ -62,11 +62,12 @@ export default function LoginPage() {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 disabled={login.isPending}
+                className="bg-nexus-surface border-white/10 focus:border-primary/50 focus:ring-primary/20"
               />
               {errors.email && <p className="text-sm text-destructive">{errors.email}</p>}
             </div>
             <div className="space-y-2">
-              <label htmlFor="password" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              <label htmlFor="password" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-300">
                 Password
               </label>
               <Input
@@ -76,10 +77,15 @@ export default function LoginPage() {
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 disabled={login.isPending}
+                className="bg-nexus-surface border-white/10 focus:border-primary/50 focus:ring-primary/20"
               />
               {errors.password && <p className="text-sm text-destructive">{errors.password}</p>}
             </div>
-            <Button type="submit" className="w-full" disabled={login.isPending}>
+            <Button
+              type="submit"
+              className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all"
+              disabled={login.isPending}
+            >
               {login.isPending ? "Signing in..." : "Sign in"}
             </Button>
             <div className="flex items-center justify-between text-sm">
